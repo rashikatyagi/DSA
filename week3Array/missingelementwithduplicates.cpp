@@ -1,5 +1,6 @@
 #include<iostream>
 #include <vector>
+#include<algorithm>
 using namespace std;
 
 // vector <int> MissingElementsWithDuplicates(vector<int> nums)
@@ -19,7 +20,7 @@ using namespace std;
 //     return ans;
 // }
 
-vector <int> MissingElementsWithDuplicates(vector<int> nums)
+vector <int> MissingElementsWithDuplicates1(vector<int> nums)
 {
     vector<int> ans;
     int n = nums.size();
@@ -35,6 +36,17 @@ vector <int> MissingElementsWithDuplicates(vector<int> nums)
     }
     return ans;
 }
+
+vector<int> MissingElementsWithDuplicates2(vector<int> nums){
+    vector<int> ans;
+    sort(nums.begin(), nums.end());
+    for(int i = 0 ; i < nums.size(); i++){
+        if(nums[i] != i  + 1)
+            ans.push_back(i + 1);
+    }
+    return ans;
+}
+
 
 void PrintArray(vector <int> nums)
 {
@@ -58,7 +70,8 @@ int main()
     cout << "Array : ";
     PrintArray(vec);
     cout << "Missing elements : ";
-    vector <int> ansArray = MissingElementsWithDuplicates(vec);
+    vector <int> ansArray = MissingElementsWithDuplicates1(vec);
+    // vector <int> ansArray = MissingElementsWithDuplicates2(vec);
     PrintArray(ansArray);
     return 0;
 }
